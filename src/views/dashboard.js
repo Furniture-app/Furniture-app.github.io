@@ -1,4 +1,5 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
+import { html } from "../lib.js"
+
 import { getAllFurniture } from "../api/data.js";
 import { itemPreviewTemplate } from "./common/item.js";
 

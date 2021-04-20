@@ -1,6 +1,6 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
-import { getItemById, editItem } from "../api/data.js";
+import { html } from "../lib.js"
 
+import { getItemById, editItem } from "../api/data.js";
 
 const editTemplate = (item, onSubmit) => html`
     <div class="row space-top">

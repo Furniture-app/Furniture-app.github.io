@@ -1,4 +1,5 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
+import { html } from "../lib.js"
+
 import { getItemById, deleteItem } from "../api/data.js";
 
 const detailsTemplate = (item,isOwner, onDelete) => html`

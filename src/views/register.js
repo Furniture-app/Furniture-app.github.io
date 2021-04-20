@@ -1,4 +1,5 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
+import { html } from "../lib.js"
+
 import { register } from "../api/data.js";
 
 const registerTemplate = ( onSubmit,errorMsg,invalidEmail, invalidPass, invalidRepass) => html`

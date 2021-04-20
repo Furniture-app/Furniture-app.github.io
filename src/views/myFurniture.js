@@ -1,7 +1,7 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
+import { html } from "../lib.js"
+
 import { getMyFurniture } from "../api/data.js";
 import { itemPreviewTemplate } from "./common/item.js";
-
 
 const myFurnitureTemplate = (data) => html`
     <div class="row space-top">

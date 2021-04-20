@@ -1,5 +1,6 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
-import { createItem, getItemById } from "../api/data.js";
+import { html } from "../lib.js"
+
+import { createItem } from "../api/data.js";
 
 const createTemplate = (onSubmit) => html`
     <div class="row space-top">
