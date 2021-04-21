@@ -9,6 +9,10 @@ import { loginPage } from "./views/login.js";
 import { myFurniturePage } from "./views/myFurniture.js";
 import { logout } from "./api/data.js";
 
+import * as api from "./api/data.js";
+
+window.api = api;
+
 const main = document.querySelector('.container');
 
 page('/', decorateContext, dashboardPage);

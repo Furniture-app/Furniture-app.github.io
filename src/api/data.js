@@ -1,6 +1,6 @@
 import * as api from "./api.js";
 
-const host = 'http://localhost:3030';
+const host = 'https://parseapi.back4app.com';
 api.settings.host = host;
 
 export const login = api.login;

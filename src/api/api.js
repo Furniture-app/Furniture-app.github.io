@@ -27,12 +27,15 @@ async function request(url, options) {
 function getOptions(method = 'get', body) { // default value of param 'method' is 'get' (if we have not passed such argument)
     const options = {
         method,
-        headers: {}
+        headers: {
+            'X-Parse-Application-Id': 'zaRU7S4AyhIiR1FOzAS26sajmnvIXM9SMlvNt1U8',
+            'X-Parse-REST-API-Key': 'C87mPrz3tOjGYIbEDyBeWBpxpVe1W3eyczP3piin'
+        }
     }
 
-    const token = sessionStorage.getItem('authToken');
+    const token = sessionStorage.getItem('sessionToken');
     if (token) {
-        options.headers['X-Authorization'] = token;
+        options.headers['X-Parse-Session-Token'] = token;
     }
 
     if (body) {
@@ -59,23 +62,23 @@ export async function del(url) {
     return await request(url, getOptions('delete'));
 }
 
-export async function login(email, password) {
-    const result = await post(settings.host + '/users/login', { email, password });
+export async function login(username, password) {
+    const result = await post(settings.host + '/login', { username, password });
 
     //Upon login AND register we should save these values in the sessionStorage:
-    sessionStorage.setItem('authToken', result.accessToken); // the accessToken for making authorized requests
-    sessionStorage.setItem('email', result.email); // the email to display it somewhere if need be
-    sessionStorage.setItem('_id', result._id); // the id to check whether this user is the owner(creator) of a certain item 
-    
+    sessionStorage.setItem('username', username); // the username to display it somewhere if need be (welcoming message)
+    sessionStorage.setItem('sessionToken', result.sessionToken); // the sessionToken for making authorized requests
+    sessionStorage.setItem('userId', result.objectId); // the userId to check whether this user is the owner(creator) of a certain item 
+
     return result;
 }
 
-export async function register(email, password) {
-    const result = await post(settings.host + '/users/register', { email, password });
+export async function register(email, username, password) {
+    const result = await post(settings.host + '/users', { email, username, password });
 
-    sessionStorage.setItem('authToken', result.accessToken);
-    sessionStorage.setItem('email', result.email);
-    sessionStorage.setItem('_id', result._id);
+    sessionStorage.setItem('username', username);
+    sessionStorage.setItem('sessionToken', result.sessionToken);
+    sessionStorage.setItem('userId', result.objectId);
 
     return result;
 }
@@ -83,12 +86,12 @@ export async function register(email, password) {
 
 
 export async function logout() {
-    const result =  await get(settings.host + '/users/logout');
+    const result = await post(settings.host + '/logout', {});
 
     //Upon logout we should remove these values from the sessionStorage:
-    sessionStorage.removeItem('authToken');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('_id');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('sessionToken');
+    sessionStorage.removeItem('userId');
 
     return result;
 }
