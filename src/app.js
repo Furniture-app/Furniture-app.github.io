@@ -43,7 +43,7 @@ function decorateContext(cxt, next) {
 }
 
 function setUserNav() {
-    const userId = sessionStorage.getItem('_id');
+    const userId = sessionStorage.getItem('userId');
 
     if (userId) {
         document.getElementById('user').style.display = 'inline-block';

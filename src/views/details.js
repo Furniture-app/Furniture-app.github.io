@@ -2,7 +2,7 @@ import { html } from "../lib.js"
 
 import { getItemById, deleteItem } from "../api/data.js";
 
-const detailsTemplate = (item,isOwner, onDelete) => html`
+const detailsTemplate = (item, isOwner, onDelete) => html`
     <div class="row space-top">
         <div class="col-md-12">
             <h1>Furniture Details</h1>
@@ -23,12 +23,12 @@ const detailsTemplate = (item,isOwner, onDelete) => html`
             <p>Description: <span>${item.description}</span></p>
             <p>Price: <span>${item.price}</span></p>
             <p>Material: <span>${item.material}</span></p>
-
-            ${isOwner? html` <div>
+    
+            ${isOwner ? html` <div>
                 <a href=${`/edit/${item._id}`} class="btn btn-info">Edit</a>
                 <a @click=${onDelete} href="javascript:void(0)" class="btn btn-red">Delete</a>
-            </div>` : '' }
-           
+            </div>` : ''}
+    
         </div>
     </div>
 `;
@@ -36,13 +36,13 @@ const detailsTemplate = (item,isOwner, onDelete) => html`
 export async function detailsPage(context) {
     const item = await getItemById(context.params.id);
     let isOwner = false;
-    const userId = sessionStorage.getItem('_id');
+    const userId = sessionStorage.getItem('userId');
 
-    if(userId === item._ownerId) {
+    if (userId === item._ownerId) {
         isOwner = true;
     }
-    
-    context.render(detailsTemplate(item,isOwner, onDelete));
+
+    context.render(detailsTemplate(item, isOwner, onDelete));
 
     async function onDelete() {
         let confirmed = confirm('Are you sure that you want to delete this item?');
