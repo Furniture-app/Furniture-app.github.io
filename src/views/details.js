@@ -12,7 +12,7 @@ const detailsTemplate = (item, isOwner, onDelete) => html`
         <div class="col-md-4">
             <div class="card text-white bg-primary">
                 <div class="card-body">
-                    <img src=${item.img.substring(1)} />
+                    <img src=${item.img} />
                 </div>
             </div>
         </div>
@@ -34,14 +34,14 @@ const detailsTemplate = (item, isOwner, onDelete) => html`
 `;
 
 export async function detailsPage(context) {
-    console.log(context.params);
+    console.log(context);
     const item = await getItemById(context.params.id);
     console.log(item);
     
     let isOwner = false;
     const userId = sessionStorage.getItem('userId');
 
-    if (userId === item.owner) {
+    if (userId === item.owner.objectId) {
         isOwner = true;
     }
 
