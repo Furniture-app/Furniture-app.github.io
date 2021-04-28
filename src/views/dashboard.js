@@ -16,7 +16,5 @@ const dashboardTemplate = (data) => html`
 `;
 export async function dashboardPage(context) {
     const data = await getAllFurniture();
-    console.log(data);
-
     context.render(dashboardTemplate(data));
 }

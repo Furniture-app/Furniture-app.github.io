@@ -25,7 +25,7 @@ const detailsTemplate = (item, isOwner, onDelete) => html`
             <p>Material: <span>${item.material}</span></p>
     
             ${isOwner ? html` <div>
-                <a href=${`/edit/${item._id}`} class="btn btn-info">Edit</a>
+                <a href=${`/edit/${item.objectId}`} class="btn btn-info">Edit</a>
                 <a @click=${onDelete} href="javascript:void(0)" class="btn btn-red">Delete</a>
             </div>` : ''}
     
@@ -34,11 +34,14 @@ const detailsTemplate = (item, isOwner, onDelete) => html`
 `;
 
 export async function detailsPage(context) {
+    console.log(context.params);
     const item = await getItemById(context.params.id);
+    console.log(item);
+    
     let isOwner = false;
     const userId = sessionStorage.getItem('userId');
 
-    if (userId === item._ownerId) {
+    if (userId === item.owner) {
         isOwner = true;
     }
 
@@ -47,7 +50,7 @@ export async function detailsPage(context) {
     async function onDelete() {
         let confirmed = confirm('Are you sure that you want to delete this item?');
         if (confirmed) {
-            await deleteItem(item._id);
+            await deleteItem(item.objectId);
             context.page.redirect('/');
         }
     }

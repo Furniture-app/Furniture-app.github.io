@@ -16,6 +16,7 @@ window.api = api;
 const main = document.querySelector('.container');
 
 page('/', decorateContext, dashboardPage);
+page('/index.html', decorateContext, dashboardPage);
 page('/details/:id', decorateContext, detailsPage);
 page('/create', decorateContext, createPage);
 page('/edit/:id', decorateContext, editPage);
