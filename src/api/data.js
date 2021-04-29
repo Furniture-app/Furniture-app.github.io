@@ -46,11 +46,11 @@ export async function createItem(data) {
 }
 
 export async function editItem(id, data) {
-    return await api.put(host + '/classes/Furniture' + id, data);
+    return await api.put(host + '/classes/Furniture/' + id, data);
 }
 
 export async function deleteItem(id) {
-    return await api.del(host + '/classes/Furniture' + id);
+    return await api.del(host + '/classes/Furniture/' + id);
 }
 
 
