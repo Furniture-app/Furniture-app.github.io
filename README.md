@@ -8,7 +8,7 @@ I have also adapted it to work with Back4App(as a REST service).
 *  Creating, editing and deleting furniture items
 *  Viewing details about a certain furniture item
 
-## Languages and libraries
+## Technologies
 * HTML, CSS, JavaScript
 * lit-html, page
 * GitHub Pages, Back4app
