@@ -10,7 +10,7 @@ I have adapted it to work with Back4App(as a REST service).
 ## Technologies
 * HTML, CSS, JavaScript
 * lit-html, page
-* GitHub Pages, Back4app
+* GitHub Pages, Back4App
 
 ## Views
 * **Login/Regsiter** - register with email, username and password
